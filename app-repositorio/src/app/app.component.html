@@ -1,0 +1,9 @@
+<div class="app-layout">
+  
+    <app-sidebar *ngIf="mostrarMenu" class="sidebar-area"></app-sidebar>
+  
+    <div class="content-area" [class.content-com-menu]="mostrarMenu">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </div>

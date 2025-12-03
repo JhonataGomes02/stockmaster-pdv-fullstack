@@ -1,0 +1,62 @@
+<div class="dialog-actions no-print">
+  <button mat-icon-button (click)="fechar()"><mat-icon>close</mat-icon></button>
+</div>
+
+<div class="cupom-container" id="cupom-fiscal">
+  
+  <div class="header">
+    <h2>{{ data.nomeMercado }}</h2>
+    <p>*** COMPROVANTE DE VENDA ***</p>
+    <p>{{ data.data | date:'dd/MM/yyyy HH:mm' }}</p>
+  </div>
+
+  <hr class="dashed">
+
+  <div class="cliente-info" *ngIf="data.nomeCliente !== 'Consumidor Final'">
+    <p>CLIENTE: {{ data.nomeCliente }}</p>
+    <hr class="dashed">
+  </div>
+
+  <div class="cliente-info">
+    <p>PAGAMENTO: <strong>{{ data.pagamento | uppercase }}</strong></p>
+    <hr class="dashed">
+  </div>
+  
+  <table class="items-list">
+    <thead>
+      <tr>
+        <th class="col-qtd">QTD</th>
+        <th class="col-item">ITEM</th>
+        <th class="col-val">VALOR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data.itens">
+        <td>{{ item.quantidade }}x</td>
+        <td>{{ item.nomeProduto }}</td>
+        <td class="text-right">{{ item.subtotal | currency:'BRL' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="dashed">
+
+  <div class="total-area">
+    <span>TOTAL A PAGAR</span>
+    <h1>{{ data.total | currency:'BRL' }}</h1>
+  </div>
+
+  <hr class="dashed">
+
+  <div class="footer">
+    <p>Obrigado pela preferência!</p>
+    <p class="sistema-msg">Gerado por StockMaster</p>
+  </div>
+
+</div>
+
+<div class="print-btn-area no-print">
+  <button mat-raised-button color="primary" class="btn-print" (click)="imprimir()">
+    <mat-icon>print</mat-icon> IMPRIMIR RECIBO
+  </button>
+</div>

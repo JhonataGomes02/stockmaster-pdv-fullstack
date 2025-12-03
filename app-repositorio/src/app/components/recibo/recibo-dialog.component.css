@@ -1,0 +1,77 @@
+.cupom-container {
+  width: 300px;
+  background: #fff0b3; 
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  color: black;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header { text-align: center; margin-bottom: 10px; }
+.header h2 { margin: 0; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; }
+.header p { margin: 2px 0; font-size: 0.8rem; }
+
+.dashed { border: 0; border-top: 1px dashed #000; margin: 10px 0; }
+
+.items-list { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
+.items-list th { text-align: left; border-bottom: 1px dashed #000; padding-bottom: 5px; }
+.items-list td { padding: 4px 0; vertical-align: top; }
+
+.col-qtd { width: 30px; }
+.col-val { text-align: right; }
+.text-right { text-align: right; }
+
+.total-area {
+  display: flex; justify-content: space-between; align-items: center; margin: 15px 0;
+}
+.total-area span { font-weight: bold; font-size: 1rem; }
+.total-area h1 { margin: 0; font-size: 1.5rem; }
+
+.footer { text-align: center; font-size: 0.8rem; margin-top: 20px; }
+.sistema-msg { font-size: 0.7rem; font-style: italic; margin-top: 5px; }
+
+/* Botões da Tela */
+.print-btn-area { padding: 20px; text-align: center; }
+.btn-print { width: 100%; height: 50px; font-weight: bold; font-size: 1.1rem; }
+.dialog-actions { text-align: right; padding-right: 10px; padding-top: 10px; }
+
+
+@media print {
+  
+  /* 1. Esconde TUDO que existe na página */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 2. Procura pelo ID do cupom e torna VISÍVEL ele e seus filhos */
+  #cupom-fiscal, #cupom-fiscal * {
+    visibility: visible;
+  }
+
+  /* 3. Posiciona o cupom no topo absoluto da folha de papel */
+  #cupom-fiscal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white; 
+    border: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 4. Garante que botões e ícones de fechar não apareçam no papel */
+  .no-print, .mat-mdc-dialog-container button {
+    display: none !important;
+  }
+  
+  /* Remove margens automáticas da página */
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+}

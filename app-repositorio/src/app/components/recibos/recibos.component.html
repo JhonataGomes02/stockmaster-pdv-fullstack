@@ -1,0 +1,89 @@
+<div class="page-container">
+  
+  <h1 class="page-title">Histórico de Recibos</h1>
+
+  <div class="toolbar-glass">
+    
+    <div class="search-group">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Buscar por ID, Cliente ou Produto..." 
+             [(ngModel)]="filtroTexto" (input)="aplicarFiltros()">
+    </div>
+
+    <div class="date-group">
+      <mat-form-field appearance="fill" class="clean-date">
+        <mat-label>Filtrar Data</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="filtroData" (dateChange)="aplicarFiltros()">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="actions-group">
+      <button mat-button class="btn-clear" (click)="limparFiltros()" *ngIf="filtroTexto || filtroData">
+        LIMPAR
+      </button>
+
+      <button class="btn-excel" (click)="exportarExcel()">
+        <mat-icon>file_download</mat-icon> Baixar Planilha
+      </button>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nº Recibo</th>
+          <th>Cliente</th>
+          <th>Data / Hora</th>
+          <th>Produto</th>
+          <th>Pagamento</th> <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listaExibicao">
+          
+          <td style="color: #64748b;">#{{ item.id | number:'3.0-0' }}</td>
+          
+          <td>
+            <div class="cliente-row">
+              <mat-icon>person</mat-icon>
+              <span>{{ item.nomeCliente }}</span>
+            </div>
+          </td>
+          
+          <td>
+            <div class="data-row">
+              <span class="data-dia">{{ item.dataPedido | date:'dd/MM/yyyy' }}</span>
+              <span class="data-hora">{{ item.dataPedido | date:'HH:mm' }}</span>
+            </div>
+          </td>
+          
+          <td>{{ item.quantidade }}x {{ item.nomeProduto }}</td>
+          
+          <td>
+            <span class="pay-badge" [ngClass]="getClassePagamento(item.formaPagamento)">
+              {{ item.formaPagamento || 'Dinheiro' }}
+            </span>
+          </td>
+          
+          <td class="valor-neon">{{ item.valorTotal | currency:'BRL' }}</td>
+          
+        </tr>
+
+        <tr *ngIf="listaExibicao.length === 0">
+          <td colspan="6">
+            <div class="empty-state">
+              <mat-icon>manage_search</mat-icon>
+              <p>Nenhum recibo encontrado com esses filtros.</p>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

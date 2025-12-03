@@ -1,0 +1,71 @@
+<div class="login-container">
+  
+  <div class="login-card">
+    
+    <div class="card-image">
+      <img src="assets/images/fundo-login.jpg" alt="Fundo" class="bg-img">
+      <div class="image-overlay">
+        <h1>StockMaster</h1>
+        <p>A solução completa para o gerenciamento do seu comércio.</p>
+      </div>
+    </div>
+
+    <div class="card-form">
+      
+      <div class="form-header">
+        <h2>Cadastrar Mercado</h2> <p>Insira os dados do seu estabelecimento.</p>
+      </div>
+
+      <form [formGroup]="registrarForm" (ngSubmit)="registrar()">
+        
+        <div class="input-group">
+          <mat-icon>store</mat-icon> <input type="text" formControlName="nome" placeholder="Nome do Mercado / Loja"> </div>
+        <span class="error-msg" *ngIf="registrarForm.get('nome')?.touched && registrarForm.get('nome')?.invalid">
+          Nome do estabelecimento é obrigatório
+        </span>
+
+        <div class="input-group">
+          <mat-icon>email</mat-icon>
+          <input type="email" formControlName="email" placeholder="E-mail Comercial"> </div>
+        <span class="error-msg" *ngIf="registrarForm.get('email')?.touched && registrarForm.get('email')?.invalid">
+          E-mail inválido
+        </span>
+
+        <div class="input-group">
+          <mat-icon>vpn_key</mat-icon> <input type="password" formControlName="senha" placeholder="Senha de Acesso da Loja">
+        </div>
+        <span class="error-msg" *ngIf="registrarForm.get('senha')?.touched && registrarForm.get('senha')?.invalid">
+          Senha (mínimo 6 caracteres)
+        </span>
+
+        <div class="terms-wrapper">
+          <mat-checkbox formControlName="termos" color="primary">
+            Li e concordo com os 
+            <a href="https://www.gov.br/bn/pt-br/atuacao/direitos-autorais-1/direitos-autorais" target="_blank" class="link-termos">
+              termos de uso
+            </a>
+            e a
+            <a href="https://www.gov.br/bn/pt-br/atuacao/direitos-autorais-1/direitos-autorais" target="_blank" class="link-termos">
+              politica de privacidade.
+            </a>
+          </mat-checkbox>
+        </div>
+        <span class="error-msg" *ngIf="registrarForm.get('termos')?.touched && registrarForm.get('termos')?.invalid">
+          Necessário aceitar os termos.
+        </span>
+
+        <button type="submit" class="btn-login" [disabled]="registrarForm.invalid">
+          CADASTRAR LOJA
+          <mat-icon>storefront</mat-icon>
+        </button>
+
+      </form>
+
+      <div class="register-footer">
+        <p>Sua loja já possui cadastro? <a routerLink="/login">Acessar Sistema</a></p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

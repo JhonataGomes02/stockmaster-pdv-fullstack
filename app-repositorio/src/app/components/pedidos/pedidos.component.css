@@ -1,0 +1,218 @@
+.page-container {
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  color: white;
+  margin-bottom: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+/*CARD DE VENDA */
+.venda-card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.venda-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+}
+
+.card-header { display: flex; align-items: center; margin-bottom: 20px; }
+.card-header mat-icon { color: #06b6d4; margin-right: 15px; }
+.card-header h2 { margin: 0; color: white; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 1px; }
+
+.divider { border: 0; border-top: 1px solid #1e293b; margin: 20px 0; }
+
+/*LABELS EXTERNOS*/
+.input-wrapper { margin-bottom: 20px; }
+.cyber-label {
+  display: block; color: #06b6d4; font-weight: 800; text-transform: uppercase;
+  font-size: 0.8rem; margin-bottom: 8px; letter-spacing: 1px;
+  font-family: 'Arial Black', Arial; text-shadow: 0 0 5px rgba(6, 182, 212, 0.4);
+}
+
+/*INPUTS GERAIS*/
+.full-width { width: 100%; display: block; }
+
+/* Estilo Base do Input */
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: #1e293b !important; 
+  border-radius: 4px !important; 
+  padding-top: 0 !important; 
+  height: 50px; /* Altura fixa importante */
+  display: flex; 
+  align-items: center;
+}
+::ng-deep .mdc-notched-outline { display: none !important; }
+::ng-deep .mat-mdc-text-field-wrapper::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #475569;
+}
+::ng-deep .mat-focused .mat-mdc-text-field-wrapper::after {
+  background: #06b6d4 !important; height: 2px; box-shadow: 0 0 10px #06b6d4;
+}
+
+::ng-deep input.mat-mdc-input-element, ::ng-deep .mat-mdc-select-value-text {
+  color: #ffffff !important; font-family: 'Arial Black', Arial; font-size: 1.1rem; font-weight: bold; top: 0 !important;
+}
+::ng-deep .mat-mdc-floating-label { display: none !important; }
+
+/* Dropdown */
+::ng-deep .mat-mdc-select-panel { background-color: #0f172a !important; border: 1px solid #334155; }
+::ng-deep .mat-mdc-option { color: white !important; font-family: Arial; }
+::ng-deep .mat-mdc-option:hover { background-color: #1e293b !important; }
+::ng-deep .mat-mdc-select-arrow { color: #06b6d4 !important; }
+
+.row-inputs-add {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Bloco da Qtd */
+.qtd-block {
+  width: 100px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.qtd-block .cyber-label { margin-bottom: 8px; }
+
+/* Input de quantidade */
+.input-qtd-field {
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+::ng-deep .input-qtd-field input { text-align: center; }
+
+/* O Botão Adicionar */
+.btn-add-action {
+  flex-grow: 1;
+  height: 50px;
+  background: #3b82f6 !important;
+  color: white !important;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  margin-bottom: 0; 
+}
+
+.btn-add-action:hover { filter: brightness(1.1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+.btn-add-action:disabled { background: #334155 !important; color: #64748b !important; }
+
+
+/*LISTA DO CARRINHO*/
+.carrinho-list {
+  background: #020617; 
+  border: 1px solid #334155; 
+  border-radius: 6px;
+  padding: 15px; 
+  margin: 20px 0; 
+  max-height: 200px; 
+  overflow-y: auto;
+}
+
+.carrinho-list h3 { 
+  color: #94a3b8; 
+  font-size: 0.9rem; 
+  margin-top: 0; 
+  text-transform: uppercase; 
+}
+
+.carrinho-item {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 12px 0; 
+  border-bottom: 1px solid #1e293b;
+  gap: 15px; 
+}
+
+.carrinho-item:last-child { border-bottom: none; }
+
+.item-info {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  flex: 1; 
+  margin-right: 10px; 
+}
+
+.item-name { 
+  color: white; 
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 0.95rem; 
+}
+
+.item-price { 
+  color: #10b981; 
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: bold; 
+  white-space: nowrap; 
+}
+
+.btn-remove {
+  background: transparent; 
+  border: none; 
+  color: #ef4444; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+.btn-remove:hover { color: #f87171; }
+
+/* RODAPÉ  */
+.total-display {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; font-family: 'Arial Black', Arial;
+}
+.total-display span { color: #10b981; text-transform: uppercase; }
+.total-display strong { color: #10b981; font-size: 1.8rem; text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+
+.btn-finalizar {
+  width: 100%; height: 60px;
+  font-size: 1.2rem !important; font-weight: 800 !important; letter-spacing: 1px;
+  background: linear-gradient(45deg, #10b981, #059669) !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+.btn-finalizar:disabled { background: #334155 !important; color: #64748b !important; box-shadow: none; }
+
+/* TABELA HISTÓRICO */
+.section-list h2 { color: white; margin-bottom: 25px; text-transform: uppercase; }
+.table-container { border: 1px solid #1e293b; border-radius: 6px; overflow: hidden; background: #0f172a; }
+
+table { width: 100%; border-collapse: collapse; }
+th { background: #1e293b; padding: 18px; text-align: left; color: #94a3b8; font-family: Arial; text-transform: uppercase; font-size: 0.8rem; }
+td { padding: 18px; border-bottom: 1px solid #1e293b; color: #e2e8f0; font-family: Arial; }
+.text-green { color: #10b981; font-weight: bold; }
+.text-muted { color: #64748b; font-size: 0.8rem; }
+
+@media (max-width: 1100px) {
+  .layout-grid { grid-template-columns: 1fr; gap: 40px; }
+}

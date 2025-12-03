@@ -1,0 +1,59 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-area">
+      <i class="bi bi-box-seam-fill logo-icon"></i>
+      <h2>StockMaster</h2>
+    </div>
+  </div>
+
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-speedometer2 icon"></i>
+        <span>Visão Geral</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/pedidos" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-cart4 icon"></i>
+        <span>Realizar Venda</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/produtos" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-boxes icon"></i>
+        <span>Estoque</span>
+      </a>
+    </li>
+ 
+    <li class="nav-item">
+      <a routerLink="/recibos" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-receipt icon"></i> <span>Recibos</span>
+      </a>
+    </li>
+  </ul>
+  
+  <div class="sidebar-footer">
+    
+    <div class="market-avatar">
+      <i class="bi bi-shop-window"></i>
+    </div>
+
+    <div class="user-details-container">
+      <div class="scrolling-text">
+        <span class="market-name">{{ nomeUsuario }}</span>
+      </div>
+      
+      <span class="status-indicator">
+        <span class="dot"></span> Online
+      </span>
+    </div>
+
+    <button class="btn-sair" (click)="logout()" title="Sair do Sistema">
+      <i class="bi bi-power"></i>
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,73 @@
+:root {
+    --primary-color: #8b5cf6; 
+    --accent-color: #3b82f6;  
+    --text-main: #ffffff;
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(15, 23, 42, 0.65); 
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(12px);
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('/assets/images/fundo-login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 16px;
+    color: white;
+}
+
+
+mat-card, .card, .venda-card, .table-container {
+    background: var(--glass-bg) !important;
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px !important;
+    color: white !important;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5) !important;
+}
+
+::ng-deep .mat-mdc-form-field-flex {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+::ng-deep input.mat-mdc-input-element, 
+::ng-deep .mat-mdc-select-value {
+    color: white !important;
+}
+
+::ng-deep .mdc-floating-label, ::ng-deep .mat-mdc-select-placeholder {
+    color: #94a3b8 !important;
+}
+
+/* Botões com Gradiente */
+button.mat-mdc-raised-button {
+    border-radius: 12px !important;
+    font-weight: bold !important;
+    letter-spacing: 0.5px;
+    padding: 22px 16px !important; /* Botões mais gordinhos */
+}
+
+/* Títulos das Páginas */
+h1.page-title {
+    color: white !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}

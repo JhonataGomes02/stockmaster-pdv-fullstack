@@ -1,0 +1,115 @@
+<div class="page-container">
+  
+  <h1 class="page-title">Gestão de Pedidos</h1>
+
+  <div class="layout-grid">
+    
+    <div class="section-form">
+      <div class="venda-card">
+        <div class="card-header">
+          <mat-icon>shopping_cart</mat-icon>
+          <h2>Nova Venda</h2>
+        </div>
+        
+        <form [formGroup]="pedidoForm">
+          
+          <div class="input-wrapper">
+            <label class="cyber-label">Nome do Cliente</label>
+            <mat-form-field appearance="fill" class="full-width no-label">
+              <input matInput formControlName="nomeCliente" placeholder="Digite o nome...">
+            </mat-form-field>
+          </div>
+
+          <hr class="divider">
+
+          <div class="add-item-area">
+            
+            <div class="input-wrapper">
+              <label class="cyber-label">Selecione o Produto</label>
+              <mat-form-field appearance="fill" class="full-width no-label">
+                <mat-select formControlName="produtoId" (selectionChange)="aoSelecionarProduto($event.value)" placeholder="Clique para escolher...">
+                  <mat-option *ngFor="let prod of listaProdutos" [value]="prod.id" [disabled]="prod.quantidade === 0">
+                    {{ prod.nome }} (Estoque: {{ prod.quantidade }}) - R$ {{ prod.preco }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="row-inputs-add">
+              
+              <div class="qtd-block">
+                <label class="cyber-label">Qtd</label>
+                <mat-form-field appearance="fill" class="no-label input-qtd-field">
+                  <input matInput type="number" formControlName="quantidade" min="1">
+                </mat-form-field>
+              </div>
+
+              <button mat-raised-button class="btn-add-action" type="button" (click)="adicionarAoCarrinho()" [disabled]="!produtoSelecionado">
+                <mat-icon>add</mat-icon> Adicionar
+              </button>
+              
+            </div>
+          </div>
+
+        </form>
+
+        <div class="carrinho-list" *ngIf="carrinho.length > 0">
+          <h3>Itens no Carrinho</h3>
+          
+          <div class="carrinho-item" *ngFor="let item of carrinho; let i = index">
+            <div class="item-info">
+              <span class="item-name">{{ item.quantidade }}x {{ item.nomeProduto }}</span>
+              <span class="item-price">{{ item.subtotal | currency:'BRL' }}</span>
+            </div>
+            <button class="btn-remove" (click)="removerDoCarrinho(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-actions">
+          <div class="total-display">
+            <span>Total:</span>
+            <strong>{{ totalCarrinho | currency:'BRL' }}</strong>
+          </div>
+
+          <button mat-raised-button class="btn-finalizar" type="button" (click)="finalizarVenda()" [disabled]="carrinho.length === 0">
+            FINALIZAR COMPRA
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-list">
+      <h2>Histórico Recente</h2>
+      
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Produto</th>
+              <th>Qtd</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of listaPedidos">
+              <td class="text-muted">#{{ pedido.id }}</td>
+              <td style="font-weight: bold;">{{ pedido.nomeCliente }}</td>
+              <td>{{ pedido.nomeProduto }}</td>
+              <td>{{ pedido.quantidade }}</td>
+              <td class="text-green">{{ pedido.valorTotal | currency:'BRL' }}</td>
+            </tr>
+            <tr *ngIf="listaPedidos.length === 0">
+              <td colspan="5" style="text-align: center; padding: 20px;">Nenhuma venda hoje.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

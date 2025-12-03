@@ -1,0 +1,55 @@
+<div class="login-container">
+  
+  <div class="login-card">
+    
+    <div class="card-image">
+      <img src="assets/images/fundo-login.jpg" alt="Fundo" class="bg-img">
+      
+      <div class="image-overlay">
+        <h1>Bem-vindo!</h1>
+        <p>Acesse o painel administrativo do StockMaster.</p>
+      </div>
+    </div>
+
+    <div class="card-form">
+      
+      <div class="form-header">
+        <h2>Fazer Login</h2>
+        <p>Entre com suas credenciais.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="fazerLogin()">
+        
+        <div class="input-group">
+          <mat-icon>email</mat-icon>
+          <input type="email" formControlName="email" placeholder="Seu E-mail">
+        </div>
+        
+        <div class="input-group">
+          <mat-icon>lock</mat-icon>
+          <input type="password" formControlName="senha" placeholder="Sua Senha">
+        </div>
+
+        <span class="error-msg" *ngIf="erroLogin">
+          E-mail ou senha incorretos.
+        </span>
+
+        <div class="forgot-container">
+          <a href="#" class="forgot-link">Esqueceu a senha?</a>
+        </div>
+
+        <button type="submit" class="btn-login" [disabled]="loginForm.invalid">
+          ENTRAR NO SISTEMA
+          <mat-icon>login</mat-icon>
+        </button>
+
+      </form>
+
+      <div class="register-footer">
+        <p>Não tem conta? <a routerLink="/registrar">Criar agora</a></p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

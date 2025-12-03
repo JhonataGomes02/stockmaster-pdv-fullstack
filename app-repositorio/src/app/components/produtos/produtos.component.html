@@ -1,0 +1,122 @@
+<div class="page-container">
+  
+  <h1 class="page-title">Produtos</h1>
+
+  <div *ngIf="!mostrarFormulario">
+    
+    <div class="actions-bar">
+      <button class="btn-cadastrar" (click)="abrirModalOuFormulario()">
+        Cadastrar Novo
+      </button>
+  
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Pesquisar produto..." (input)="filtrar($event)">
+      </div>
+    </div>
+  
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 50px;">ID</th>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th style="text-align: right;">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of produtos" [class.low-stock-row]="(produto.quantidade || 0) < 20">
+            
+            <td class="col-id">{{ produto.id | number:'3.0-0' }}</td>
+            <td style="font-weight: 500;">{{ produto.nome }}</td>
+            <td>
+              <span>{{ produto.categoria }}</span>
+            </td>
+            <td>R$ {{ produto.preco | number:'1.2-2' }}</td>
+            
+            <td>
+              <div *ngIf="(produto.quantidade || 0) < 20; else estoqueOk" class="badge-alert">
+                <mat-icon style="font-size: 16px; height: 16px; width: 16px; margin-right: 4px;">warning</mat-icon>
+                {{ produto.quantidade || 0 }} (Baixo)
+              </div>
+            
+              <ng-template #estoqueOk>
+                <span class="badge-ok">x {{ produto.quantidade || 0 }}</span>
+              </ng-template>
+            </td>
+
+            <td class="col-actions">
+              <button class="btn-pill btn-editar" (click)="prepararEdicao(produto)">Editar</button>
+              <button class="btn-pill btn-remover" (click)="remover(produto.id)">Remover</button>
+            </td>
+          </tr>
+          
+          <tr *ngIf="produtos.length === 0">
+            <td colspan="6" style="text-align: center; padding: 30px; color: #94a3b8;">
+              Nenhum produto encontrado.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarFormulario" class="form-overlay">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ editandoId ? 'Editar Produto' : 'Novo Produto' }}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()">
+          
+          <div class="input-wrapper">
+            <label class="cyber-label">Nome do Produto</label>
+            <mat-form-field appearance="fill" class="full-width no-label">
+              <input matInput formControlName="nome" placeholder="Digite aqui...">
+            </mat-form-field>
+          </div>
+
+          <div class="input-wrapper">
+            <label class="cyber-label">Categoria</label>
+            <mat-form-field appearance="fill" class="full-width no-label">
+              <mat-select formControlName="categoria" placeholder="Selecione...">
+                <mat-option *ngFor="let cat of categorias" [value]="cat">
+                  {{ cat }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row-inputs">
+            <div class="input-wrapper">
+              <label class="cyber-label">Preço (R$)</label>
+              <mat-form-field appearance="fill" class="no-label">
+                <input matInput type="number" formControlName="preco" min="0">
+              </mat-form-field>
+            </div>
+
+            <div class="input-wrapper">
+              <label class="cyber-label">Quantidade</label>
+              <mat-form-field appearance="fill" class="no-label">
+                <input matInput type="number" formControlName="quantidade" min="0">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="produtoForm.invalid">
+              Salvar
+            </button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

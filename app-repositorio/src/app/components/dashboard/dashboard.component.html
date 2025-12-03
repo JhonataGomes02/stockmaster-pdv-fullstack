@@ -1,0 +1,91 @@
+<div class="page-container">
+  
+  <h1 class="page-title">Visão Geral</h1>
+
+  <div class="cards-grid">
+    <div class="card card-green">
+      <div class="card-info">
+        <h3>Faturamento</h3>
+        <p class="big-number">{{ faturamentoTotal | currency:'BRL' }}</p>
+        <span class="sub-text">{{ totalVendas }} vendas</span>
+      </div>
+      <mat-icon class="card-icon">payments</mat-icon>
+    </div>
+
+    <div class="card card-blue">
+      <div class="card-info">
+        <h3>Produtos</h3>
+        <p class="big-number">{{ totalProdutos }}</p>
+        <span class="sub-text">Cadastrados</span>
+      </div>
+      <mat-icon class="card-icon">inventory_2</mat-icon>
+    </div>
+
+    <div class="card card-red">
+      <div class="card-info">
+        <h3>Reposição</h3>
+        <p class="big-number">{{ produtosBaixoEstoque }}</p>
+        <span class="sub-text">Estoque Baixo</span>
+      </div>
+      <mat-icon class="card-icon">warning</mat-icon>
+    </div>
+  </div>
+
+<div class="charts-grid">
+    
+    <div class="chart-card">
+      <h2>📈 Evolução de Vendas</h2>
+      
+      <div class="canvas-container">
+        <canvas baseChart
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="'line'">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>🏆 Top Produtos</h2>
+      
+      <div class="canvas-container">
+        <canvas baseChart
+          [data]="pieChartData"
+          [options]="pieChartOptions"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert-section">
+    <h2>⚠️ Alertas de Reposição</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Qtd. Restante</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaAlerta">
+            <td style="font-weight: bold;">{{ item.nome }}</td>
+            <td>{{ item.categoria }}</td>
+            <td class="text-danger">{{ item.quantidade }} un</td>
+            <td><span class="badge-critico">Crítico</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div *ngIf="listaAlerta.length === 0" class="empty-state">
+        <mat-icon>check_circle</mat-icon>
+        <p>Estoque saudável! Nenhum alerta.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

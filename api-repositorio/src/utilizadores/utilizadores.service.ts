@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Utilizador } from './entities/utilizador.entity';
 
+// ⚠️ CUIDADO: Não pode ter "import { UtilizadoresService } ..." aqui!
+
 @Injectable()
 export class UtilizadoresService {
   
@@ -11,36 +13,45 @@ export class UtilizadoresService {
     private utilizadoresRepository: Repository<Utilizador>,
   ) {}
 
-  // CRIA UM NOVO USUÁRIO NO BANCO
+  // Cria um usuário
   async create(dadosUtilizador: any) {
     const novoUtilizador = this.utilizadoresRepository.create(dadosUtilizador);
     return await this.utilizadoresRepository.save(novoUtilizador);
   }
 
-  // BUSCA POR EMAIL (Usado no Login)
+  // Busca por e-mail (usado no Login/Auth)
   async findOneByEmail(email: string) {
     return await this.utilizadoresRepository.findOneBy({ email });
   }
 
-  // LISTA TODOS
+  // Alias para garantir compatibilidade (se AuthService chamar findByEmail)
+  async findByEmail(email: string) {
+    return this.findOneByEmail(email);
+  }
+
+  // Lista todos
   async findAll() {
     return await this.utilizadoresRepository.find();
   }
 
-  // BUSCA POR ID
+  // Busca por ID
   async findOne(id: number) {
     return await this.utilizadoresRepository.findOneBy({ id });
   }
 
+  // Atualiza dados gerais
   async update(id: number, dadosAtualizacao: any) {
-    // Atualiza no banco de dados
     await this.utilizadoresRepository.update(id, dadosAtualizacao);
-    // Retorna o usuário atualizado
     return this.findOne(id);
   }
 
-  // DELETA UM USUÁRIO
+  // Remove usuário
   async remove(id: number) {
     return await this.utilizadoresRepository.delete(id);
+  }
+
+  // Atualiza SOMENTE a senha (usado no Recuperar Senha)
+  async atualizarSenha(id: number, novaSenhaHash: string) {
+    return this.utilizadoresRepository.update(id, { senha: novaSenhaHash });
   }
 }

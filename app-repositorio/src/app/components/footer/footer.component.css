@@ -1,0 +1,66 @@
+.cyber-footer {
+  background-color: #0f172a; /* Mesmo fundo escuro do login */
+  border-top: 1px solid #334155; /* Borda sutil no topo */
+  padding: 20px 0;
+  margin-top: auto; /* Empurra o footer para o final se a página for curta */
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* Linha Neon no topo (Opcional, igual a da tabela) */
+.cyber-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; 
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent);
+  opacity: 0.7;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: #94a3b8; /* Cinza azulado */
+  font-family: monospace; /* Fonte técnica */
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+/* Link com nome Neon */
+.neon-link {
+  color: #06b6d4; /* Azul Cyan */
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.neon-link:hover {
+  color: #22d3ee;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+}
+
+.version {
+  font-size: 0.75rem;
+  background: rgba(30, 41, 59, 0.5);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #64748b;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}

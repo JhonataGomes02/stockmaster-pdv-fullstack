@@ -2,18 +2,36 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background-color: transparent; 
+  background-color: transparent; /* ✅ Mantido transparente para o wallpaper */
 }
 
-.content-area.content-com-menu {
-  margin-left: 320px; 
-  width: calc(100% - 320px);
-  padding: 20px 40px 20px 0; 
-  transition: all 0.3s;
-}
-
+/* Área da Direita (Conteúdo + Footer) */
 .content-area {
   width: 100%;
   margin-left: 0;
   padding: 0;
+  
+  /* --- NOVO: ISSO ALINHA O FOOTER NO FINAL --- */
+  display: flex;
+  flex-direction: column; /* Um embaixo do outro */
+  min-height: 100vh;      /* Ocupa a altura toda */
+}
+
+/* Ajuste quando o menu está aberto */
+.content-area.content-com-menu {
+  margin-left: 320px;       /* ✅ Mantido seu espaçamento */
+  width: calc(100% - 320px);
+  
+  /* Ajustei o padding-bottom para 0 para o footer colar no chão se quiser, 
+     ou mantenha 20px se quiser um espacinho */
+  padding: 20px 40px 0 0;  
+  
+  transition: all 0.3s;
+}
+
+/* --- NOVO: CLASSE QUE EMPURRA O RODAPÉ --- */
+/* Essa div vai crescer o máximo possível, jogando o footer lá pra baixo */
+.router-wrapper {
+  flex: 1; 
+  width: 100%;
 }

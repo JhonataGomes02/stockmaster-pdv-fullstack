@@ -62,6 +62,7 @@
 .date-group {
   flex: 1;
   min-width: 180px;
+  height: 56px;
 }
 
 ::ng-deep .clean-date { width: 100%; }

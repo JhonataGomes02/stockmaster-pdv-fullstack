@@ -1,0 +1,24 @@
+<div class="modal-container">
+  <h2 mat-dialog-title>RECUPERAR ACESSO</h2>
+  
+  <mat-dialog-content>
+    <p class="subtitle">Confirme seu e-mail para redefinir a credencial.</p>
+
+    <div class="input-cyber">
+      <mat-icon>alternate_email</mat-icon>
+      <input [(ngModel)]="email" placeholder="E-mail Cadastrado" type="email">
+    </div>
+
+    <div class="input-cyber">
+      <mat-icon>lock_reset</mat-icon>
+      <input [(ngModel)]="novaSenha" placeholder="Nova Senha" type="password">
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button class="btn-cancel" (click)="cancelar()">CANCELAR</button>
+    <button class="btn-confirm" (click)="confirmar()" [disabled]="!email || !novaSenha">
+      DEFINIR NOVA SENHA
+    </button>
+  </mat-dialog-actions>
+</div>

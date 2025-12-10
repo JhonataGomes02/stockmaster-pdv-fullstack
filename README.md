@@ -1,6 +1,6 @@
 # 🛒 StockMaster - PDV Fullstack
 
-Sistema de gestão de estoque e vendas (PDV) desenvolvido como Trabalho de Conclusão de Curso (TCC). O projeto utiliza **NestJS** no Back-end, **Angular** no Front-end e **MySQL** como banco de dados.
+Sistema de gestão de estoque e vendas (PDV) desenvolvido como Trabalho de Conclusão de Curso (TCC) do FORD ENTER. O projeto utiliza **NestJS** no Back-end, **Angular** no Front-end e **MySQL** como banco de dados.
 
 ---
 
@@ -71,7 +71,7 @@ Passo 3: Iniciar o Front-end (Aplicação)
 Abra um novo terminal na pasta app-repositorio.
 Execute os comandos:
 
-# Instalar dependências (COMANDO IMPORTANTE)
+# Instalar dependências do FRONT END (COMANDO IMPORTANTE)
 npm install --legacy-peer-deps
 
 # Rodar o projeto

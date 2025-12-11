@@ -1,4 +1,4 @@
-# 🛒 StockMaster - PDV Fullstack
+# 🛒 Prime PDV - Fullstack
 
 Sistema de gestão de estoque e vendas (PDV) desenvolvido como Trabalho de Conclusão de Curso (TCC) do FORD ENTER. O projeto utiliza **NestJS** no Back-end, **Angular** no Front-end e **MySQL** como banco de dados.
 

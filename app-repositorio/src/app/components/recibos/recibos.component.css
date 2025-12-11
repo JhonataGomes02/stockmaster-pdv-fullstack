@@ -73,8 +73,10 @@
   padding-top: 0 !important;
 }
 
-::ng-deep .clean-date input.mat-input-element {
-  color: white !important;
+::ng-deep .clean-date input, 
+::ng-deep .clean-date .mat-mdc-input-element {
+  color: #ffffff !important; /* Texto branco */
+  caret-color: #06b6d4;      /* Cursor azul neon */
   margin-top: 0 !important;
 }
 
